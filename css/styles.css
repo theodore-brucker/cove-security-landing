@@ -1,0 +1,279 @@
+/* Fonts
+--------------------------*/
+@import url("https://rsms.me/inter/inter-ui.css");
+
+/* Variables
+---------------------------*/
+
+:root {
+  --deep-blue: #1a4a7c;
+  --bright-green: #00CC66;
+  --dark-bg: #121212;
+  --card-bg: #1e1e1e;
+  --text-primary: #8f8d8d;
+  --text-secondary: #8f8d8d;
+  --error-red: #FF4136;
+
+  --body-border: .6em;
+  --body-padding: 3vw;
+  --background: var(--dark-bg);
+  --background-alt: var(--card-bg);
+  --text-color: var(--text-primary);
+  --border-color: var(--text-secondary);
+}
+
+/* Global
+---------------------------*/
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+::selection {
+  background-color: var(--deep-blue);
+  color: var(--text-primary);
+}
+
+::selection:hover {
+  background-color: var(--bright-green);
+  color: var(--dark-bg);
+}
+
+html {
+  height: 100vh;
+  padding: var(--body-border);
+  background-color: var(--background-alt);
+}
+
+body {
+  min-height: calc(100vh - var(--body-border)*2);
+  margin: 0;
+  padding: 2.5vw 2.5vw 5vw;
+  display: flex;
+  flex-direction: column;
+  gap: 1vw;
+  background-color: var(--dark-bg);
+  color: var(--text-primary);
+  border-radius: 5px;
+  font-size: 112.5%;
+  font-family: "Inter UI", Helvetica, Arial, sans-serif;
+  line-height: 1.4;
+}
+
+/* Header
+---------------------------*/
+
+header {
+  display: flex;
+  justify-content: flex-end;
+  flex: 1 0 1;
+}
+
+/* Main
+---------------------------*/
+
+main {
+  display: flex;
+  flex-direction: column;
+  gap: 3vw;
+  flex: 1;
+}
+
+@media screen and (min-width: 800px) {
+  main {
+    flex-direction: row;
+  }
+}
+
+/* About section
+---------------------------*/
+
+.about {
+  padding: 2rem var(--body-padding);
+  flex: 1 0 1;
+  border-top: 4px solid var(--deep-blue);
+  background-color: var(--card-bg);
+  border-radius: 10px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.about:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+@media screen and (min-width: 800px) {
+  .about {
+    padding: 2rem;
+    flex: 1;
+  }
+}
+
+.about > * {
+  margin: 0 0 1rem;
+  font-size: clamp(1rem, 1.5vw, 1.8rem);
+}
+
+.about h1 {
+  font-size: clamp(2rem, 3vw, 4rem);
+  color: var(--deep-blue);
+  transition: color 0.3s ease;
+  margin-bottom: 1.5rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.about:hover h1 {
+  color: var(--bright-green);
+}
+
+.about p {
+  line-height: 1.6;
+}
+
+.about .slide-out {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 1rem var(--body-padding);
+  background-color: var(--deep-blue);
+  color: var(--text-primary);
+  transform: translateY(100%);
+  transition: transform 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  display: block;
+}
+
+.about:hover .slide-out {
+  transform: translateY(0);
+}
+
+.about .slide-out:hover,
+.about .slide-out:focus {
+  background-color: var(--bright-green);
+  color: var(--dark-bg);
+}
+
+/* Links section
+---------------------------*/
+
+.links {
+  display: flex;
+  flex-direction: column;
+  flex: 2;
+  border-top: 4px solid var(--deep-blue);
+}
+
+.links > a {
+  padding-right: var(--body-padding);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  flex: 1;;
+  border-bottom: 1px solid var(--deep-blue);
+  text-decoration: none;
+  font-size: clamp(1.5rem, 5vw, 10rem);
+  color: var(--text-color);
+  transition: background-color 0.3s ease;
+}
+
+.links > a:hover,
+.links > a:focus {
+  background-color: var(--card-bg);
+}
+
+.links > a > strong {
+  padding-left: var(--body-padding);
+  padding-right: .5em;
+  position: relative;
+  display: flex;
+  align-items: center;
+  background-color: var(--background);
+  z-index: 1;
+  color: var(--deep-blue);
+  transition: color 0.3s ease;
+}
+
+.links > a > strong:after {
+  content: '';
+  width: 1px;
+  height: 100%;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  background-color: var(--deep-blue);
+  opacity: 0;
+  transition: opacity 100ms ease-in-out;
+  transform: translateY(-50%);
+}
+
+@media screen and (min-width: 800px) {
+  .links > a > strong:after {
+    height: 80%;
+  }
+}
+
+.links > a:hover > strong:after,
+.links > a:focus > strong:after {
+  opacity: 1;
+}
+
+.links > a > span {
+  position: relative;
+  font-size: clamp(1rem, 2vw, 2rem);
+  transition: color 0.3s ease, transform 150ms ease-in-out;
+  transform: translateX(-100%);
+  z-index: 0;
+  color: var(--text-secondary);
+}
+
+@media (prefers-reduced-motion) {
+  .links > a > span {
+    transition: none;
+  }
+}
+
+.links > a:hover > span,
+.links > a:focus > span  {
+  transform: translateX(1em);
+  color: var(--bright-green);
+}
+
+.links > a:focus {
+  outline: none;
+}
+
+.links > a:focus,
+.links > a:focus > strong {
+  background-color: var(--background-alt);
+}
+
+/* Custom link styles */
+.github-link:hover,
+.github-link:focus,
+.email-link:hover,
+.email-link:focus,
+.discord-link:hover,
+.discord-link:focus {
+  background-color: rgba(26, 74, 124, 0.1); /* Deep blue with low opacity */
+}
+
+.github-link:hover > strong,
+.github-link:focus > strong,
+.email-link:hover > strong,
+.email-link:focus > strong,
+.discord-link:hover > strong,
+.discord-link:focus > strong {
+  color: var(--bright-green);
+}
+
+/* Remove any conflicting styles */
+.links > a:hover > span,
+.links > a:focus > span  {
+  color: var(--text-secondary); /* Keep the smaller text color unchanged */
+}
